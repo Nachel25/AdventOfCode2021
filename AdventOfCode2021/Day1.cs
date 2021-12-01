@@ -11,7 +11,7 @@ namespace AdventOfCode2021
             var counterThreeMeasurePoints = 0;
 
             // Part 1
-            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "input01.txt");
+            var filepath = @"..\..\..\inputFiles\input01.txt";
             int[] lines = Array.ConvertAll(File.ReadAllLines(filepath), int.Parse);
 
             var oldvalue = 0;
