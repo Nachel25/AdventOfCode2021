@@ -2,7 +2,7 @@
 
 namespace AdventOfCode2021
 {
-    class Program
+    class Day1
     {
         static void Main(string[] args)
         {
