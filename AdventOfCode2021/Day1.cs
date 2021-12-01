@@ -12,11 +12,10 @@ namespace AdventOfCode2021
 
             // Part 1
             var filepath = Path.Combine(Directory.GetCurrentDirectory(), "input01.txt");
-            string[] lines = File.ReadAllLines(filepath);
-            int[] linesAsInt = Array.ConvertAll(lines, int.Parse);
+            int[] lines = Array.ConvertAll(File.ReadAllLines(filepath), int.Parse);
 
             var oldvalue = 0;
-            foreach (var line in linesAsInt)
+            foreach (var line in lines)
             {
                 var value = line;
                 if (value > oldvalue)
@@ -33,9 +32,9 @@ namespace AdventOfCode2021
 
             // Part 2
             oldvalue = 0;
-            for (int i = 0; i < linesAsInt.Length - 2; i++)
+            for (int i = 0; i < lines.Length - 2; i++)
             {
-                var value = linesAsInt[i] + linesAsInt[i + 1] + linesAsInt[i + 2];
+                var value = lines[i] + lines[i + 1] + lines[i + 2];
                 if (value > oldvalue)
                 {
                     if (!(oldvalue == 0))
