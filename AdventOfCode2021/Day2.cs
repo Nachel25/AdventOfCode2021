@@ -19,7 +19,8 @@ namespace AdventOfCode2021
         }
         // Part 1
         public int HorizontalPosition
-        { get
+        { 
+            get
             {
                 horizontalPosition = 0;
                 foreach (var line in lines)
