@@ -12,6 +12,7 @@ namespace AdventOfCode2021
         private int[] lines;
         private int increases;
         private int threePointMeasureIncreases;
+
         public Day1(string filepath)
         {
             lines = Array.ConvertAll(File.ReadAllLines(filepath), int.Parse);
