@@ -8,8 +8,7 @@ namespace AdventOfCode2021
         static void Main(string[] args)
         {
             // Call Class Day1
-            var filepathDay1 = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\input01.txt");
-            var day1 = new Day1(filepathDay1);
+            var day1 = new Day1(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\inputDay01.txt"));
 
             // Part 1
             Console.WriteLine("\nBeginning Day 1 Part 1");
@@ -22,8 +21,7 @@ namespace AdventOfCode2021
             Console.WriteLine($"There were {day1.ThreePointMeasureIncreases} increases with three measure point comparison.");
 
             // Call Class Day2
-            var filepathDay2 = Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\input02.txt");
-            var day2 = new Day2(filepathDay2);
+            var day2 = new Day2(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\inputDay02.txt"));
 
             // Day2 Part 1
             Console.WriteLine("\nBeginning Day 2 Part 1");

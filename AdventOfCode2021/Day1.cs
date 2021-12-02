@@ -5,7 +5,7 @@ namespace AdventOfCode2021
 {
     class Day1
     {
-        private int[] lines;
+        private readonly int[] lines;
         private int increases;
         private int threePointMeasureIncreases;
 

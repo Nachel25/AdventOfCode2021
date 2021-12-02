@@ -5,8 +5,7 @@ namespace AdventOfCode2021
 {
     class Day2
     {
-        private string[] lines;
-        private string[] splittedLines;
+        private readonly string[] lines;
         private string direction;
         private int units;
         private int horizontalPosition;
@@ -85,7 +84,7 @@ namespace AdventOfCode2021
 
         private void SplitLine(string line)
         {
-            splittedLines = line.Split(" ");
+            var splittedLines = line.Split(" ");
             direction = splittedLines[0];
             units = Convert.ToInt32(splittedLines[1]);
         }
