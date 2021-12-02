@@ -25,10 +25,7 @@ namespace AdventOfCode2021
                 horizontalPosition = 0;
                 foreach (var line in lines)
                 {
-                    splittedLines = line.Split(" ");
-                    direction = splittedLines[0];
-                    units = Convert.ToInt32(splittedLines[1]);
-
+                    SplitLine(line);
                     if (direction.Contains("forward"))
                     {
                         horizontalPosition += units;
@@ -45,10 +42,7 @@ namespace AdventOfCode2021
                 depth = 0;
                 foreach (var line in lines)
                 {
-                    splittedLines = line.Split(" ");
-                    direction = splittedLines[0];
-                    units = Convert.ToInt32(splittedLines[1]);
-
+                    SplitLine(line);
                     if (direction.Contains("down"))
                     {
                         depth += units;
@@ -71,10 +65,7 @@ namespace AdventOfCode2021
                 aim = 0;
                 foreach (var line in lines)
                 {
-                    splittedLines = line.Split(" ");
-                    direction = splittedLines[0];
-                    units = Convert.ToInt32(splittedLines[1]);
-
+                    SplitLine(line);
                     if (direction.Contains("down"))
                     {
                         aim += units;
@@ -90,6 +81,13 @@ namespace AdventOfCode2021
                 }
                 return depthCorrected;
             }
+        }
+
+        private void SplitLine(string line)
+        {
+            splittedLines = line.Split(" ");
+            direction = splittedLines[0];
+            units = Convert.ToInt32(splittedLines[1]);
         }
     }
 }
