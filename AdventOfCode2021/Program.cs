@@ -47,6 +47,11 @@ namespace AdventOfCode2021
             Console.WriteLine($"Epsilon rate: {day3.EpsilonRate}");
             Console.WriteLine($"Product: {day3.GammaRate * day3.EpsilonRate}");
 
+            // Day3 Part 2
+            Console.WriteLine("\nBeginning Day 3 Part 2");
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine($"Oxigen generator rating:{day3.OxygenGeneratorRating}");
+
             // stall console window
             Console.ReadLine();
         }

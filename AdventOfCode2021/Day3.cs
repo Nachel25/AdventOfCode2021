@@ -15,6 +15,7 @@ namespace AdventOfCode2021
         private int epsilonRate;
         private string epsilonRateAsString;
         private int oxygenGeneratorRating;
+        private List<string> oxygenGeneratorRatingList = new();
         private int cO2ScrubberRating;
 
         public Day3(string filepath)
@@ -32,21 +33,7 @@ namespace AdventOfCode2021
                 var countOnes = new int[bitLength];
                 var countZeroes = new int[bitLength];
                 gammaRateAsList.Clear();
-                foreach (var line in lines)
-                {
-                    var charArray = line.ToCharArray();
-                    for (int i = 0; i < bitLength; i++)
-                    {
-                        if (charArray[i] == '0')
-                        {
-                            countZeroes[i]++;
-                        }
-                        else
-                        {
-                            countOnes[i]++;
-                        }
-                    }
-                }
+                CountZeroesAndOnes(countOnes, countZeroes);
 
                 for (int i = 0; i < bitLength; i++)
                 {
@@ -86,6 +73,33 @@ namespace AdventOfCode2021
         {
             get
             {
+                oxygenGeneratorRatingList = new List<string>(lines);
+                while (oxygenGeneratorRatingList.Count > 1)
+                {
+                    var countOnes = new int[bitLength];
+                    var countZeroes = new int[bitLength];
+                    CountZeroesAndOnes(countOnes, countZeroes);
+                    var oxygenGeneratorRatingAsArray = new String[lines.Length];
+
+                    for (int i = 0; i < bitLength; i++)
+                    {
+                        foreach (var item in oxygenGeneratorRatingList.ToList())
+                        {
+                            if (countZeroes[i] > countOnes[i])
+                            {
+
+                                if (oxygenGeneratorRatingList[i]  )
+                                oxygenGeneratorRatingList.Remove(item);
+                            }
+                            else
+                            {
+                                oxygenGeneratorRatingList.Remove(item);
+                            }
+                            Console.WriteLine(item);
+                        }
+                    }
+                }
+
                 return oxygenGeneratorRating;
             }
         }
@@ -95,6 +109,25 @@ namespace AdventOfCode2021
             get
             {
                 return cO2ScrubberRating;
+            }
+        }
+
+        private void CountZeroesAndOnes(int[] countOnes, int[] countZeroes)
+        {
+            foreach (var line in lines)
+            {
+                var charArray = line.ToCharArray();
+                for (int i = 0; i < bitLength; i++)
+                {
+                    if (charArray[i] == '0')
+                    {
+                        countZeroes[i]++;
+                    }
+                    else
+                    {
+                        countOnes[i]++;
+                    }
+                }
             }
         }
     }
