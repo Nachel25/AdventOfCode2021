@@ -14,7 +14,8 @@ namespace AdventOfCode2021
         private string gammaRateAsString;
         private int epsilonRate;
         private string epsilonRateAsString;
-        
+        private int oxygenGeneratorRating;
+        private int cO2ScrubberRating;
 
         public Day3(string filepath)
         {
@@ -81,7 +82,21 @@ namespace AdventOfCode2021
         }
 
         //Part 2
+        public int OxygenGeneratorRating
+        {
+            get
+            {
+                return oxygenGeneratorRating;
+            }
+        }
 
+        public int CO2ScrubberRating
+        {
+            get
+            {
+                return cO2ScrubberRating;
+            }
+        }
     }
 }
 
