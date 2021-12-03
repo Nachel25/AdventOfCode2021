@@ -17,6 +17,7 @@ namespace AdventOfCode2021
         private int oxygenGeneratorRating;
         private List<string> oxygenGeneratorRatingList = new();
         private int cO2ScrubberRating;
+        private List<string> cO2ScrubberRatingList = new();
 
         public Day3(string filepath)
         {
@@ -48,9 +49,7 @@ namespace AdventOfCode2021
                 }
 
                 gammaRateAsString = String.Join("", gammaRateAsList.ToArray());
-
-                var binaryBase = 2;
-                gammaRate = Convert.ToInt32(gammaRateAsString, binaryBase);
+                gammaRate = BinaryStringToInt(gammaRateAsString);
                 return gammaRate;
             }
         }
@@ -62,10 +61,15 @@ namespace AdventOfCode2021
                 static string BinaryInverted(string input) => string.Concat(input.Select(x => x == '0' ? '1' : '0'));
                 epsilonRateAsString = BinaryInverted(gammaRateAsString);
 
-                var binaryBase = 2;
-                epsilonRate = Convert.ToInt32(epsilonRateAsString, binaryBase);
+                epsilonRate = BinaryStringToInt(epsilonRateAsString);
                 return epsilonRate;
             }
+        }
+
+        private int BinaryStringToInt(string binaryString)
+        {
+            var binaryBase = 2;
+            return Convert.ToInt32(binaryString, binaryBase);
         }
 
         //Part 2
@@ -74,32 +78,29 @@ namespace AdventOfCode2021
             get
             {
                 oxygenGeneratorRatingList = new List<string>(lines);
-                while (oxygenGeneratorRatingList.Count > 1)
-                {
-                    var countOnes = new int[bitLength];
-                    var countZeroes = new int[bitLength];
-                    CountZeroesAndOnes(countOnes, countZeroes);
-                    var oxygenGeneratorRatingAsArray = new String[lines.Length];
+                var countOnes = new int[bitLength];
+                var countZeroes = new int[bitLength];
+                CountZeroesAndOnes(countOnes, countZeroes);
 
+                foreach (var item in oxygenGeneratorRatingList.ToList())
+                {
+                    if (oxygenGeneratorRatingList.Count == 1)
+                    { break; }
                     for (int i = 0; i < bitLength; i++)
                     {
-                        foreach (var item in oxygenGeneratorRatingList.ToList())
+                        if (countZeroes[i] > countOnes[i] && item.StartsWith('1'))
                         {
-                            if (countZeroes[i] > countOnes[i])
-                            {
-
-                                if (oxygenGeneratorRatingList[i]  )
-                                oxygenGeneratorRatingList.Remove(item);
-                            }
-                            else
-                            {
-                                oxygenGeneratorRatingList.Remove(item);
-                            }
-                            Console.WriteLine(item);
+                            oxygenGeneratorRatingList.Remove(item);
+                        }
+                        else if (countOnes[i] > countZeroes[i] && item.StartsWith('0'))
+                        {
+                            oxygenGeneratorRatingList.Remove(item);
                         }
                     }
                 }
+                var oxygenGeneratorRatingString = String.Join("", oxygenGeneratorRatingList.ToArray());
 
+                oxygenGeneratorRating = BinaryStringToInt(oxygenGeneratorRatingString);
                 return oxygenGeneratorRating;
             }
         }
@@ -108,6 +109,30 @@ namespace AdventOfCode2021
         {
             get
             {
+                cO2ScrubberRatingList = new List<string>(lines);
+                var countOnes = new int[bitLength];
+                var countZeroes = new int[bitLength];
+                CountZeroesAndOnes(countOnes, countZeroes);
+
+                foreach (var item in cO2ScrubberRatingList.ToList())
+                {
+                    if (cO2ScrubberRatingList.Count == 1)
+                    { break; }
+                    for (int i = 0; i < bitLength; i++)
+                    {
+                        if (countZeroes[i] > countOnes[i] && item.StartsWith('1'))
+                        {
+                            cO2ScrubberRatingList.Remove(item);
+                        }
+                        else if (countOnes[i] > countZeroes[i] && item.StartsWith('0'))
+                        {
+                            cO2ScrubberRatingList.Remove(item);
+                        }
+                    }
+                }
+                var oxygenGeneratorRatingString = String.Join("", oxygenGeneratorRatingList.ToArray());
+
+                cO2ScrubberRating = BinaryStringToInt(oxygenGeneratorRatingString);
                 return cO2ScrubberRating;
             }
         }
