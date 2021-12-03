@@ -37,6 +37,15 @@ namespace AdventOfCode2021
             Console.WriteLine($"Depth: {day2.DepthCorrected}");
             Console.WriteLine($"Location: {day2.HorizontalPosition * day2.DepthCorrected}");
 
+            // Day3 Part 1
+            var day3 = new Day3(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\inputDay03.txt"));
+
+            Console.WriteLine("\nBeginning Day 3 Part 1");
+            Console.WriteLine("----------------------------------------------------------------");
+            Console.WriteLine($"Gamma rate: {day3.GammaRate}");
+            Console.WriteLine($"Epsilon rate: {day3.EpsilonRate}");
+            Console.WriteLine($"Product: {day3.GammaRate * day3.EpsilonRate}");
+
             // stall console window
             Console.ReadLine();
         }
