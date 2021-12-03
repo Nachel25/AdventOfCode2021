@@ -13,10 +13,12 @@ namespace AdventOfCode2021
         private List<string> gammaRateAsList = new List<string>();
         private int epsilonRate;
         private string epsilonRateAsString;
+        private int bitLength;
 
         public Day3(string filepath)
         {
             lines = File.ReadAllLines(filepath);
+            bitLength = lines[0].Length;
         }
 
         // Part 1
@@ -25,13 +27,13 @@ namespace AdventOfCode2021
             get
             {
                 gammaRate = 0;
-                var countOnes = new int[12];
-                var countZeroes = new int[12];
+                var countOnes = new int[bitLength];
+                var countZeroes = new int[bitLength];
                 gammaRateAsList.Clear();
                 foreach (var line in lines)
                 {
                     var charArray = line.ToCharArray();
-                    for (int i = 0; i < charArray.Length; i++)
+                    for (int i = 0; i < bitLength; i++)
                     {
                         if (charArray[i] == '0')
                         {
@@ -44,7 +46,7 @@ namespace AdventOfCode2021
                     }
                 }
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < bitLength; i++)
                 {
                     if (countZeroes[i] > countOnes[i])
                     {
@@ -57,7 +59,6 @@ namespace AdventOfCode2021
                 }
 
                 gammaRateAsString = String.Join("", gammaRateAsList.ToArray());
-                //Console.WriteLine($"Gamma rate as binary:{gammaRateAsString}");
 
                 var binaryBase = 2;
                 gammaRate = Convert.ToInt32(gammaRateAsString, binaryBase);
@@ -71,7 +72,6 @@ namespace AdventOfCode2021
             {
                 string BinaryInverted(string input) => string.Concat(input.Select(x => x == '0' ? '1' : '0'));
                 epsilonRateAsString = BinaryInverted(gammaRateAsString);
-                //Console.WriteLine($"Epsilon rate as binary:{epsilonRateAsString}");
 
                 var binaryBase = 2;
                 epsilonRate = Convert.ToInt32(epsilonRateAsString, binaryBase);

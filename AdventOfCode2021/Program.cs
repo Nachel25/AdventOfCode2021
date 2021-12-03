@@ -37,9 +37,10 @@ namespace AdventOfCode2021
             Console.WriteLine($"Depth: {day2.DepthCorrected}");
             Console.WriteLine($"Location: {day2.HorizontalPosition * day2.DepthCorrected}");
 
-            // Day3 Part 1
+            // Call Class Day3
             var day3 = new Day3(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\inputDay03.txt"));
 
+            // Day3 Part 1
             Console.WriteLine("\nBeginning Day 3 Part 1");
             Console.WriteLine("----------------------------------------------------------------");
             Console.WriteLine($"Gamma rate: {day3.GammaRate}");
