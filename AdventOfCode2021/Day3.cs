@@ -8,12 +8,13 @@ namespace AdventOfCode2021
     class Day3
     {
         private readonly string[] lines;
+        private readonly List<string> gammaRateAsList = new();
+        private readonly int bitLength;
         private int gammaRate;
         private string gammaRateAsString;
-        private List<string> gammaRateAsList = new List<string>();
         private int epsilonRate;
         private string epsilonRateAsString;
-        private int bitLength;
+        
 
         public Day3(string filepath)
         {
@@ -70,7 +71,7 @@ namespace AdventOfCode2021
         {
             get
             {
-                string BinaryInverted(string input) => string.Concat(input.Select(x => x == '0' ? '1' : '0'));
+                static string BinaryInverted(string input) => string.Concat(input.Select(x => x == '0' ? '1' : '0'));
                 epsilonRateAsString = BinaryInverted(gammaRateAsString);
 
                 var binaryBase = 2;
