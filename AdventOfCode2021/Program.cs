@@ -50,7 +50,9 @@ namespace AdventOfCode2021
             // Day3 Part 2
             Console.WriteLine("\nBeginning Day 3 Part 2");
             Console.WriteLine("----------------------------------------------------------------");
-            Console.WriteLine($"Oxigen generator rating:{day3.OxygenGeneratorRating}");
+            Console.WriteLine($"Oxygen generator rating:{day3.OxygenGeneratorRating}");
+            Console.WriteLine($"CO2 scrubber rating:{day3.CO2ScrubberRating}");
+            Console.WriteLine($"Product:{day3.CO2ScrubberRating * day3.OxygenGeneratorRating}");
 
             // stall console window
             Console.ReadLine();

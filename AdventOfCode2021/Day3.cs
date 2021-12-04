@@ -31,14 +31,13 @@ namespace AdventOfCode2021
             get
             {
                 gammaRate = 0;
-                var countOnes = new int[bitLength];
-                var countZeroes = new int[bitLength];
                 gammaRateAsList.Clear();
-                CountZeroesAndOnes(countOnes, countZeroes);
+                var linesAsList = new List<string>(lines);
+                var countedTemp = CountZeroesAndOnes(linesAsList);
 
                 for (int i = 0; i < bitLength; i++)
                 {
-                    if (countZeroes[i] > countOnes[i])
+                    if (countedTemp[0][i] > countedTemp[1][i])
                     {
                         gammaRateAsList.Add("0");
                     }
@@ -78,27 +77,30 @@ namespace AdventOfCode2021
             get
             {
                 oxygenGeneratorRatingList = new List<string>(lines);
-                var countOnes = new int[bitLength];
-                var countZeroes = new int[bitLength];
-                CountZeroesAndOnes(countOnes, countZeroes);
+                var keepOxygenGeneratorRatingList = new List<string>();
 
-                foreach (var item in oxygenGeneratorRatingList.ToList())
+                for (int j = 0; j < bitLength; j++)
                 {
-                    if (oxygenGeneratorRatingList.Count == 1)
-                    { break; }
-                    for (int i = 0; i < bitLength; i++)
+                    var mostCommon = '1';
+                    var countedTemp = CountZeroesAndOnes(oxygenGeneratorRatingList);
+                    if (countedTemp[0][j] > countedTemp[1][j])
+                        { mostCommon = '0'; }
+                    for (int i = 0; i < oxygenGeneratorRatingList.Count; i++)
                     {
-                        if (countZeroes[i] > countOnes[i] && item.StartsWith('1'))
+                        if (i > oxygenGeneratorRatingList.Count)
+                        { break; }
+                        var test = oxygenGeneratorRatingList[i][j] == mostCommon;
+                        if (oxygenGeneratorRatingList[i][j] == mostCommon)
                         {
-                            oxygenGeneratorRatingList.Remove(item);
-                        }
-                        else if (countOnes[i] > countZeroes[i] && item.StartsWith('0'))
-                        {
-                            oxygenGeneratorRatingList.Remove(item);
+                            keepOxygenGeneratorRatingList.Add(oxygenGeneratorRatingList[i]);
                         }
                     }
+                    oxygenGeneratorRatingList = keepOxygenGeneratorRatingList.ToArray().ToList();
+                    if (keepOxygenGeneratorRatingList.Count == 1)
+                    { break; }
+                    keepOxygenGeneratorRatingList.Clear();
                 }
-                var oxygenGeneratorRatingString = String.Join("", oxygenGeneratorRatingList.ToArray());
+                var oxygenGeneratorRatingString = String.Join("", keepOxygenGeneratorRatingList.ToArray());
 
                 oxygenGeneratorRating = BinaryStringToInt(oxygenGeneratorRatingString);
                 return oxygenGeneratorRating;
@@ -110,36 +112,41 @@ namespace AdventOfCode2021
             get
             {
                 cO2ScrubberRatingList = new List<string>(lines);
-                var countOnes = new int[bitLength];
-                var countZeroes = new int[bitLength];
-                CountZeroesAndOnes(countOnes, countZeroes);
+                var keepCO2ScrubberRatingList = new List<string>();
 
-                foreach (var item in cO2ScrubberRatingList.ToList())
+                for (int j = 0; j < bitLength; j++)
                 {
-                    if (cO2ScrubberRatingList.Count == 1)
-                    { break; }
-                    for (int i = 0; i < bitLength; i++)
+                    var leastCommon = '0';
+                    var countedTemp = CountZeroesAndOnes(cO2ScrubberRatingList);
+                    if (countedTemp[0][j] > countedTemp[1][j])
+                    { leastCommon = '1'; }
+                    for (int i = 0; i < cO2ScrubberRatingList.Count; i++)
                     {
-                        if (countZeroes[i] > countOnes[i] && item.StartsWith('1'))
+                        if (i > cO2ScrubberRatingList.Count)
+                        { break; }
+                        var test = cO2ScrubberRatingList[i][j] == leastCommon;
+                        if (cO2ScrubberRatingList[i][j] == leastCommon)
                         {
-                            cO2ScrubberRatingList.Remove(item);
-                        }
-                        else if (countOnes[i] > countZeroes[i] && item.StartsWith('0'))
-                        {
-                            cO2ScrubberRatingList.Remove(item);
+                            keepCO2ScrubberRatingList.Add(cO2ScrubberRatingList[i]);
                         }
                     }
+                    cO2ScrubberRatingList = keepCO2ScrubberRatingList.ToArray().ToList();
+                    if (keepCO2ScrubberRatingList.Count == 1)
+                    { break; }
+                    keepCO2ScrubberRatingList.Clear();
                 }
-                var oxygenGeneratorRatingString = String.Join("", oxygenGeneratorRatingList.ToArray());
+                var cO2ScrubberRatingString = String.Join("", keepCO2ScrubberRatingList.ToArray());
 
-                cO2ScrubberRating = BinaryStringToInt(oxygenGeneratorRatingString);
+                cO2ScrubberRating = BinaryStringToInt(cO2ScrubberRatingString);
                 return cO2ScrubberRating;
             }
         }
 
-        private void CountZeroesAndOnes(int[] countOnes, int[] countZeroes)
+        private List<int[]> CountZeroesAndOnes(List<string> inputList)
         {
-            foreach (var line in lines)
+            var countZeroes = new int[bitLength];
+            var countOnes = new int[bitLength];
+            foreach (var line in inputList)
             {
                 var charArray = line.ToCharArray();
                 for (int i = 0; i < bitLength; i++)
@@ -154,6 +161,8 @@ namespace AdventOfCode2021
                     }
                 }
             }
+            var output = new List<int[]>() { countZeroes, countOnes };
+            return output;
         }
     }
 }
