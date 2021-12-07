@@ -13,11 +13,8 @@ namespace AdventOfCode2021
         private int gammaRate;
         private string gammaRateAsString;
         private int epsilonRate;
-        private string epsilonRateAsString;
         private int oxygenGeneratorRating;
-        private List<string> oxygenGeneratorRatingList = new();
         private int cO2ScrubberRating;
-        private List<string> cO2ScrubberRatingList = new();
 
         public Day3(string filepath)
         {
@@ -58,14 +55,14 @@ namespace AdventOfCode2021
             get
             {
                 static string BinaryInverted(string input) => string.Concat(input.Select(x => x == '0' ? '1' : '0'));
-                epsilonRateAsString = BinaryInverted(gammaRateAsString);
+                var epsilonRateAsString = BinaryInverted(gammaRateAsString);
 
                 epsilonRate = BinaryStringToInt(epsilonRateAsString);
                 return epsilonRate;
             }
         }
 
-        private int BinaryStringToInt(string binaryString)
+        private static int BinaryStringToInt(string binaryString)
         {
             var binaryBase = 2;
             return Convert.ToInt32(binaryString, binaryBase);
@@ -76,7 +73,7 @@ namespace AdventOfCode2021
         {
             get
             {
-                oxygenGeneratorRatingList = new List<string>(lines);
+                var oxygenGeneratorRatingList = new List<string>(lines);
                 var keepOxygenGeneratorRatingList = new List<string>();
 
                 for (int j = 0; j < bitLength; j++)
@@ -89,7 +86,6 @@ namespace AdventOfCode2021
                     {
                         if (i > oxygenGeneratorRatingList.Count)
                         { break; }
-                        var test = oxygenGeneratorRatingList[i][j] == mostCommon;
                         if (oxygenGeneratorRatingList[i][j] == mostCommon)
                         {
                             keepOxygenGeneratorRatingList.Add(oxygenGeneratorRatingList[i]);
@@ -111,7 +107,7 @@ namespace AdventOfCode2021
         {
             get
             {
-                cO2ScrubberRatingList = new List<string>(lines);
+                var cO2ScrubberRatingList = new List<string>(lines);
                 var keepCO2ScrubberRatingList = new List<string>();
 
                 for (int j = 0; j < bitLength; j++)
@@ -124,7 +120,6 @@ namespace AdventOfCode2021
                     {
                         if (i > cO2ScrubberRatingList.Count)
                         { break; }
-                        var test = cO2ScrubberRatingList[i][j] == leastCommon;
                         if (cO2ScrubberRatingList[i][j] == leastCommon)
                         {
                             keepCO2ScrubberRatingList.Add(cO2ScrubberRatingList[i]);

@@ -54,6 +54,20 @@ namespace AdventOfCode2021
             Console.WriteLine($"CO2 scrubber rating:{day3.CO2ScrubberRating}");
             Console.WriteLine($"Product:{day3.CO2ScrubberRating * day3.OxygenGeneratorRating}");
 
+            // Call Class Day4
+            var day4 = new Day4(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\inputDay04.txt"));
+
+            // Day4 Part 1
+            Console.WriteLine("\nBeginning Day 4 Part 1");
+            Console.WriteLine("----------------------------------------------------------------");
+
+            // Call Class Day5
+            var day5 = new Day5(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\inputFiles\inputDay05.txt"));
+
+            // Day4 Part 1
+            Console.WriteLine("\nBeginning Day 5 Part 1");
+            Console.WriteLine("----------------------------------------------------------------");
+
             // stall console window
             Console.ReadLine();
         }
