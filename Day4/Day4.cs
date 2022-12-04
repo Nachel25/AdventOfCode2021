@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace AdventOfCode2021
+namespace Day4
 {
     class Day4
     {
